@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FolowPos: {fileID: 1097613066}
-  paralaxSpeed: 0.35
+  paralaxSpeed: 0.25
   disableVerticalParalax: 0
 --- !u!1 &150687861
 GameObject:
@@ -548,7 +548,7 @@ RectTransform:
   - {fileID: 1470358370}
   - {fileID: 955419160}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1265,7 +1265,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590024316
 GameObject:
@@ -1465,6 +1465,7 @@ MonoBehaviour:
   - {fileID: 6122480868140356403, guid: bec43a45673f4f04fb03182fe08feb06, type: 3}
   - {fileID: 6122480868140356403, guid: 11562ad5ffb605045bed32afe5749f9e, type: 3}
   woodPoint: {fileID: 2003412497}
+  AxeEffect: {fileID: 7193314424433957089, guid: 466e8f3105d987047b139243c423ec55, type: 3}
   woodscore: 0
   woodscorePlus: 1
   score: 0
@@ -2028,7 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FolowPos: {fileID: 1097613066}
-  paralaxSpeed: 0.4
+  paralaxSpeed: 0.35
   disableVerticalParalax: 0
 --- !u!1 &1097613063
 GameObject:
@@ -3973,6 +3974,10 @@ PrefabInstance:
     - target: {fileID: 7557187200050287605, guid: 88c1f5d4bdb6bc641918886ec1f1ccc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557187200340229304, guid: 88c1f5d4bdb6bc641918886ec1f1ccc6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7557187200340229304, guid: 88c1f5d4bdb6bc641918886ec1f1ccc6, type: 3}
       propertyPath: m_LocalRotation.w

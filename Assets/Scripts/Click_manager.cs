@@ -9,6 +9,7 @@ public class Click_manager : MonoBehaviour
 {
     public GameObject[] wood;
     public Transform woodPoint;
+    public GameObject AxeEffect;
 
     public int woodscore = 0;
     public int woodscorePlus = 1;
@@ -30,6 +31,7 @@ public class Click_manager : MonoBehaviour
     //Создание бревен
     public void clickTree()
     {
+        Instantiate(AxeEffect, woodPoint.position + new Vector3(0,0,-10), Quaternion.Euler(0,0,0));
         int Scance1 = Random.Range(0, 3);
 
         int i0 = Random.Range(0, 3);
