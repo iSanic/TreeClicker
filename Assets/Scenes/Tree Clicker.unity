@@ -3613,7 +3613,7 @@ PrefabInstance:
       objectReference: {fileID: 923019469}
     - target: {fileID: 7557187200739153389, guid: 88c1f5d4bdb6bc641918886ec1f1ccc6, type: 3}
       propertyPath: reload
-      value: 0.05
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 7557187200739153389, guid: 88c1f5d4bdb6bc641918886ec1f1ccc6, type: 3}
       propertyPath: trigRL
