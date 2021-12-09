@@ -13,8 +13,6 @@ public class Move_Camera : MonoBehaviour
     public BoxCollider2D bc;
     public float speed = 5f;
 
-    public GameObject cd;
-
     bool l;
     bool r;
     bool c;
