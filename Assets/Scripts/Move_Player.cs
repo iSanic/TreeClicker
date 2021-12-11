@@ -27,6 +27,9 @@ public class Move_Player : MonoBehaviour
 
     public int[] woodIndex = new int[2] {0,0};
 
+    public AudioSource HitToTree;
+    public AudioSource WoddUp;
+
     private void Start()
     {
         bc = GetComponent<BoxCollider2D>();
@@ -94,6 +97,8 @@ public class Move_Player : MonoBehaviour
 
     public IEnumerator Reload()
     {
+        HitToTree.pitch = Random.Range(0.9f, 1.3f);
+        HitToTree.Play();
         Axe.Play("AxeDown");
         cm.clickTree();
         TreeBC.enabled = false;
@@ -141,12 +146,14 @@ public class Move_Player : MonoBehaviour
             Destroy(collision.gameObject);
             cm.WoodScorePlus();
             woodIndex[0] += 1;
+            WoddUp.Play();
         }
         if (collision.gameObject.name.Equals("Wood1(Clone)"))
         {
             Destroy(collision.gameObject);
             cm.WoodScorePlus();
             woodIndex[1] += 1;
+            WoddUp.Play();
         }
 
 

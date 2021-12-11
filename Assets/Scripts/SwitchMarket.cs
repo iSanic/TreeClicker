@@ -10,6 +10,7 @@ public class SwitchMarket : MonoBehaviour
 
     public GameObject TreeUpdate;
     public GameObject AxeMarket;
+    public AudioSource Button;
 
     private void Update()
     {
@@ -29,6 +30,7 @@ public class SwitchMarket : MonoBehaviour
 
     public void switchMarket()
     {
+        Button.Play();
         flag = !flag;
     }
 }

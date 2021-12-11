@@ -14,6 +14,8 @@ public class SaleManager : MonoBehaviour
     public GameObject NoWood;
     public GameObject WoodForSale;
 
+    public AudioSource SaleWood;
+
     private void Update()
     {
         if (cm.woodscore != 0)
@@ -30,6 +32,7 @@ public class SaleManager : MonoBehaviour
 
     public void Sale()
     {
+        SaleWood.Play();
         int sum = 0;
         for (int i = 0; i < countWood.Length; i++)
         {

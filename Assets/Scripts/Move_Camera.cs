@@ -13,6 +13,8 @@ public class Move_Camera : MonoBehaviour
     public BoxCollider2D bc;
     public float speed = 5f;
 
+    public AudioSource audioButton;
+
     bool l;
     bool r;
     bool c;
@@ -73,16 +75,19 @@ public class Move_Camera : MonoBehaviour
 
     public void Left()
     {
+        audioButton.Play();
         l = true;
     }
 
     public void Center()
     {
+        audioButton.Play();
         c = true;
     }
 
     public void Rigit()
     {
+        audioButton.Play();
         r = true;
     }
 
