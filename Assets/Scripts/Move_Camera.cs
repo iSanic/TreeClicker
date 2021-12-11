@@ -28,7 +28,7 @@ public class Move_Camera : MonoBehaviour
         if (l)
         {
             Vector3 dop = new Vector3(-0.1f, 0, 0);
-            Vector3 left = new Vector3 (-5, 0, -10);
+            Vector3 left = new Vector3 (-6, 0, -10);
             this.transform.position = Vector3.Lerp(transform.position, left + dop, speed * Time.deltaTime);
             leftBT.SetActive(false);
             rightBT.SetActive(false);
@@ -44,7 +44,7 @@ public class Move_Camera : MonoBehaviour
         if (r)
         {
             Vector3 dop = new Vector3(0.1f, 0, 0);
-            Vector3 right = new Vector3(5, 0, -10);
+            Vector3 right = new Vector3(6, 0, -10);
             this.transform.position = Vector3.Lerp(transform.position, right + dop, speed * Time.deltaTime);
             leftBT.SetActive(false);
             rightBT.SetActive(false);

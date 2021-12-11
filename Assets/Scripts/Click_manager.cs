@@ -37,8 +37,8 @@ public class Click_manager : MonoBehaviour
         int i0 = Random.Range(0, 3);
         while (i0 != 0)
         {
-            Instantiate(wood[0], woodPoint.position, Quaternion.Euler(0, 0, Random.Range(rht1, rht2)));
             i0--;
+            Instantiate(wood[0], woodPoint.position, Quaternion.Euler(0, 0, Random.Range(rht1, rht2)));
         }
         if (Scance1 == 0) {
             int i1 = Random.Range(0, 2);
