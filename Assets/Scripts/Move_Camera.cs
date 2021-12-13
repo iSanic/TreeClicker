@@ -6,10 +6,11 @@ using UnityEngine.UIElements;
 
 public class Move_Camera : MonoBehaviour
 {
-    public GameObject leftBT;
-    public GameObject rightBT;
-    public GameObject backBTleft;
+    public GameObject leftBT;           //Левая кнопка переключения
+    public GameObject rightBT;          //Правая кнопка переключения
+    public GameObject backBTleft;       //Боковые кнопки движения в центр
     public GameObject backBTright;
+
     public BoxCollider2D bc;
     public float speed = 5f;
 
@@ -31,7 +32,7 @@ public class Move_Camera : MonoBehaviour
         {
             Vector3 dop = new Vector3(-0.1f, 0, 0);
             Vector3 left = new Vector3 (-6, 0, -10);
-            this.transform.position = Vector3.Lerp(transform.position, left + dop, speed * Time.deltaTime);
+            this.transform.position = Vector3.Lerp(transform.position, left + dop, speed * Time.deltaTime); //Делать плавное движение налево
             leftBT.SetActive(false);
             rightBT.SetActive(false);
             bc.enabled = false;
@@ -47,7 +48,7 @@ public class Move_Camera : MonoBehaviour
         {
             Vector3 dop = new Vector3(0.1f, 0, 0);
             Vector3 right = new Vector3(6, 0, -10);
-            this.transform.position = Vector3.Lerp(transform.position, right + dop, speed * Time.deltaTime);
+            this.transform.position = Vector3.Lerp(transform.position, right + dop, speed * Time.deltaTime); //Делать плавное движение направо
             leftBT.SetActive(false);
             rightBT.SetActive(false);
             bc.enabled = false;
@@ -62,7 +63,7 @@ public class Move_Camera : MonoBehaviour
         if (c)
         {
             Vector3 center = Vector3.zero;
-            this.transform.position = center + new Vector3 (0, 0, -10);
+            this.transform.position = center + new Vector3 (0, 0, -10); //Переместить камеру в центр потому что ёбаный юнити не хочет плавно двигать его в центр адекватно.
             bc.enabled = true;
             if (this.transform.position.x == center.x)
             {
@@ -78,18 +79,14 @@ public class Move_Camera : MonoBehaviour
         audioButton.Play();
         l = true;
     }
-
     public void Center()
     {
         audioButton.Play();
         c = true;
     }
-
     public void Rigit()
     {
         audioButton.Play();
         r = true;
     }
-
-
 }

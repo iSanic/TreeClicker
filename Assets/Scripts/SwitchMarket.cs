@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Скрипт для переключения магазинов (Между прокачкой и магазином с топорами)
 public class SwitchMarket : MonoBehaviour
 {
     public Text SwText;

@@ -6,27 +6,43 @@ using UnityEngine.EventSystems;
 
 public class Move_Player : MonoBehaviour
 {
+    //Всё, что связанно с деревом
     public Click_manager cm;
     public Tree tree;
-    public TriggerRL trigRL;
     public BoxCollider2D TreeBC;
+    
+    //Триггер боковых кнопок
+    public TriggerRL trigRL;
+
+    //Анимация топора
     public Animation Axe;
+
+    //Кружочек перезарядки
     public GameObject SercleBar;
 
+
+    //Триггервы фиксирующие позицию мыши 
     BoxCollider2D bc;
     Rigidbody2D rb;
     public float speed = 0.2f;
     Vector2 pos = new Vector2(0f, 0f);
     public Vector3 mousePos;
+
+    //Триггеры фиксирующие поворот игрока
     bool faceRight = true;
     public float reload;
 
+
+    //Триггеры фиксирующие нажатия мыши
     private bool clickToPlayer = false;
     [SerializeField]
     private bool btON = false;
 
-    public int[] woodIndex = new int[2] {0,0};
 
+    //!!!Массив в котором храняться бревна разного вида
+    public int[] woodIndex;
+
+    //Звуки
     public AudioSource HitToTree;
     public AudioSource WoddUp;
 
@@ -42,6 +58,7 @@ public class Move_Player : MonoBehaviour
         checkBT();
     }
 
+    //Функция разварота топора и направления полета бревен
     void Reflect(Vector2 mousePos, Vector2 pos)
     {
         if ((mousePos.x > pos.x && !faceRight) || mousePos.x < pos.x && faceRight)
@@ -61,7 +78,7 @@ public class Move_Player : MonoBehaviour
         }
     }
 
-    //Если мышь нажата на объекте - делать движение за мышькой 
+    //Если мышь нажата на игроке - делать движение за мышькой 
     public void checkMove()
     {
         
@@ -79,7 +96,7 @@ public class Move_Player : MonoBehaviour
         }
     }
 
-    //Если персоеаж у дерева - вкл кнопку
+    //Если игрок у дерева - можно нажимать на дерево 
     public void checkBT()
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -95,27 +112,31 @@ public class Move_Player : MonoBehaviour
         }
     }
 
+
+    //Карутина для возможности удара с перезарядкой
     public IEnumerator Reload()
     {
-        HitToTree.pitch = Random.Range(0.9f, 1.3f);
+        HitToTree.pitch = Random.Range(0.9f, 1.3f);                     //Воспроизвести звук удара по дереву топором
         HitToTree.Play();
-        Axe.Play("AxeDown");
-        cm.clickTree();
+
+        Axe.Play("AxeDown");                                            //Запустить анимацию удара топора
+
+        cm.clickTree();                                                 //Добавить на сцену бревна после удала по дереву
         TreeBC.enabled = false;
         SercleBar.GetComponent<Image>().enabled = true;
-        while (SercleBar.GetComponent<Image>().fillAmount != 0)
+        while (SercleBar.GetComponent<Image>().fillAmount != 0)         //Пока задержка не закончиться - нажать на дерево нельзя
         {
             SercleBar.GetComponent<Image>().fillAmount -= 0.1f;
             yield return new WaitForSeconds(reload);
         }
-        SercleBar.GetComponent<Image>().enabled = false;
+        SercleBar.GetComponent<Image>().enabled = false;                //После окончания задержки - топор возвращаеться в исходное состояние
         SercleBar.GetComponent<Image>().fillAmount = 1f;
         TreeBC.enabled = (true);
         Axe.Play("AxeUp");
     }
 
 
-    //При нажатии на мышь работает движение
+    //При нажатии на мышь - включить движение
     private void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -141,23 +162,22 @@ public class Move_Player : MonoBehaviour
             btON = true;
         }
 
+        //Если игрок подошел к бревну - подобрать его
         if (collision.gameObject.name.Equals("Wood0(Clone)"))
         {
             Destroy(collision.gameObject);
-            cm.WoodScorePlus();
             woodIndex[0] += 1;
             WoddUp.Play();
         }
         if (collision.gameObject.name.Equals("Wood1(Clone)"))
         {
             Destroy(collision.gameObject);
-            cm.WoodScorePlus();
             woodIndex[1] += 1;
             WoddUp.Play();
         }
 
 
-
+        //Триггеры кнопок Sale/Market
         if (collision.gameObject.name.Equals("TriggerL"))
         {
             trigRL.TriggLeftON();
@@ -167,15 +187,17 @@ public class Move_Player : MonoBehaviour
             trigRL.TriggRightON();
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Если игрок не у дерева - на дерево нажать нельзя
         if (collision.gameObject.name.Equals("Tree"))
         {
             btON = false;
         }
 
 
-
+        //Кнопки Sale/Market проподают при выходе из триггера
         if (collision.gameObject.name.Equals("TriggerL"))
         {
             trigRL.TriggLeftOFF();

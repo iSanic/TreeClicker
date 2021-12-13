@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class DropWood : MonoBehaviour
 {
-    float Force;
-    private Rigidbody2D rg;
+    float Force;                //Силы с которой вылетит бревно из точки появления бревна
+    private Rigidbody2D rg;     
 
     private void Start()
     {

@@ -7,8 +7,8 @@ public class SaleManager : MonoBehaviour
 {
     public Click_manager cm;
     public Move_Player mp;
-    public Text[] countWoodText = new Text[2];
-    public int[] countWood = new int[2];
+    public Text[] countWoodText = new Text[2]; //Массив цен на бревна в тексте на экране
+    public int[] countWood = new int[2];       //Массив цен на бревна          
 
 
     public GameObject NoWood;
@@ -18,6 +18,7 @@ public class SaleManager : MonoBehaviour
 
     private void Update()
     {
+        //Если есть бревна - выводить их колличесвто и сумму которую получит игрок за их продвжу 
         if (cm.woodscore != 0)
         {
             int sum = 0;
@@ -30,21 +31,24 @@ public class SaleManager : MonoBehaviour
        isWood();
     }
 
+    //Продажа бревен
     public void Sale()
     {
         SaleWood.Play();
-        int sum = 0;
+        int sum = 0; //Сумма денег за бревна
+        //Считаем сумму которую получим при продаже бревен 
         for (int i = 0; i < countWood.Length; i++)
         {
-            sum += countWood[i] * mp.woodIndex[i];
-            mp.woodIndex[i] = 0;
+            sum += countWood[i] * mp.woodIndex[i]; //Кочиство бревен убножаем на их стоимость
+            mp.woodIndex[i] = 0;                   
         }
 
         cm.score += sum;
-        cm.woodscore = 0;
+        cm.woodscore = 0;                          //Обнуляем количетсво бревен - так как они проданы
         sum = 0;
     }
 
+    //Если нет бревен - вывод текста что их нет, если есть то писать их количество
     void isWood()
     {
         if (cm.woodscore <= 0)
