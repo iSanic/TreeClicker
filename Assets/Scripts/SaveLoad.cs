@@ -35,7 +35,7 @@ public class SaveLoad : MonoBehaviour
     {
         QuickSaveWriter.Create("Player", new QuickSaveSettings() 
         { 
-                        SecurityMode = SecurityMode.Aes,
+                        SecurityMode = SecurityMode.Base64,
                         Password = "vXQwS4V8HbdCe62g",
                         CompressionMode = CompressionMode.None
         })
@@ -50,7 +50,7 @@ public class SaveLoad : MonoBehaviour
     {
         var reader = QuickSaveReader.Create("Player", new QuickSaveSettings()
         {
-                                     SecurityMode = SecurityMode.Aes,
+                                     SecurityMode = SecurityMode.Base64,
                                      Password = "vXQwS4V8HbdCe62g",
                                      CompressionMode = CompressionMode.None
         })
