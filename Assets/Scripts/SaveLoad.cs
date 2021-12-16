@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CI.QuickSave;
 
@@ -33,15 +31,17 @@ public class SaveLoad : MonoBehaviour
 
     void Save()
     {
-        QuickSaveWriter.Create("Player", new QuickSaveSettings() 
-        { 
-                        SecurityMode = SecurityMode.Base64,
-                        Password = "vXQwS4V8HbdCe62g",
-                        CompressionMode = CompressionMode.None
+        QuickSaveWriter.Create("Player", new QuickSaveSettings()
+        {
+            SecurityMode = SecurityMode.Base64,
+            Password = "vXQwS4V8HbdCe62g",
+            CompressionMode = CompressionMode.None
         })
                        .Write<int>("score", cm.score)
                        .Write<int>("wood0", mp.woodIndex[0])
                        .Write<int>("wood1", mp.woodIndex[1])
+                       .Write<Vector3>("playerPosition", mp.posPlayer)
+                     //  .Write<bool>("faseRight", mp.faceRight)
                        .Commit();
 
     }
@@ -50,13 +50,16 @@ public class SaveLoad : MonoBehaviour
     {
         var reader = QuickSaveReader.Create("Player", new QuickSaveSettings()
         {
-                                     SecurityMode = SecurityMode.Base64,
-                                     Password = "vXQwS4V8HbdCe62g",
-                                     CompressionMode = CompressionMode.None
+            SecurityMode = SecurityMode.Base64,
+            Password = "vXQwS4V8HbdCe62g",
+            CompressionMode = CompressionMode.None
         })
-                                    .Read<int>("score", (r) => {cm.score = r;})
+                                    .Read<int>("score", (r) => { cm.score = r; })
                                     .Read<int>("wood0", (r) => { mp.woodIndex[0] = r; })
-                                    .Read<int>("wood1", (r) => { mp.woodIndex[1] = r; });
+                                    .Read<int>("wood1", (r) => { mp.woodIndex[1] = r; })
+                                    .Read<Vector3>("playerPosition", (r) => { mp.posPlayer = r; })
+                                  //  .Read<bool>("faseRight", (r) => { mp.faceRight = r; })
+                                    ;
 
     }
 }

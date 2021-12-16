@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class Move_Player : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class Move_Player : MonoBehaviour
     public TriggerRL trigRL;
 
     //Анимация топора
-    public Animator anim;
+    Animator anim;
 
     //Кружочек перезарядки
     public GameObject SercleBar;
@@ -28,9 +26,11 @@ public class Move_Player : MonoBehaviour
     public float speed = 0.2f;
     Vector2 pos = new Vector2(0f, 0f);
     public Vector3 mousePos;
+    public Vector3 posPlayer;
+    
 
     //Триггеры фиксирующие поворот игрока
-    bool faceRight = true;
+    public bool faceRight = true;
     public float reload;
 
 
@@ -52,22 +52,26 @@ public class Move_Player : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        this.transform.position = posPlayer;
+        faceRight = true;
     }
 
     private void Update()
     {
         checkMove();
         checkBT();
+        posPlayer = this.transform.position;
     }
 
     //Функция разварота топора и направления полета бревен
     void Reflect(Vector2 mousePos, Vector2 pos)
     {
-        if ((mousePos.x > pos.x && !faceRight) || mousePos.x < pos.x && faceRight)
+        if ((mousePos.x > pos.x && !faceRight) || (mousePos.x < pos.x && faceRight))
         {
             transform.localScale *= new Vector2(-1, 1);
             faceRight = !faceRight;
         }
+
         if (faceRight) 
         {
             cm.rht1 = 0;
