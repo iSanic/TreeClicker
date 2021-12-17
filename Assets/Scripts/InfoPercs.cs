@@ -22,6 +22,7 @@ public class InfoPercs : MonoBehaviour
     };
 
     public int indexPerc;
+    public int openWood = 0;
 
     private void Start()
     {
@@ -122,6 +123,19 @@ public class InfoPercs : MonoBehaviour
                     mp.reload *= 0.6f;
                     cm.score -= coutIndex[indexPerc];
                     coutIndex[indexPerc] = (int)Mathf.Round((float)coutIndex[indexPerc] * 4.8f);
+                }
+                break;
+            case 1:
+                if (coutIndex[indexPerc] <= cm.score)
+                {
+                    cm.enabledWood[openWood + 1] = 0 ;
+                    openWood++;
+                    for (int i = 0; i < cm.Number.Length; i++)
+                    {
+                        cm.Number[i]++;
+                    }
+                    cm.score -= coutIndex[indexPerc];
+                    coutIndex[indexPerc] = (int)Mathf.Round((float)coutIndex[indexPerc] * 8.2f);
                 }
                 break;
         }

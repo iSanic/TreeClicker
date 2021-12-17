@@ -177,6 +177,12 @@ public class Move_Player : MonoBehaviour
             woodIndex[1] += 1;
             WoddUp.Play();
         }
+        if (collision.gameObject.name.Equals("Wood2(Clone)"))
+        {
+            Destroy(collision.gameObject);
+            woodIndex[2] += 1;
+            WoddUp.Play();
+        }
 
 
         //Триггеры кнопок Sale/Market
