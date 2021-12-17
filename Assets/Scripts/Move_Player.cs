@@ -31,7 +31,7 @@ public class Move_Player : MonoBehaviour
 
     //Триггеры фиксирующие поворот игрока
     public bool faceRight = true;
-    public float reload;
+    public float reload = 0.1f;
 
 
     //Триггеры фиксирующие нажатия мыши
