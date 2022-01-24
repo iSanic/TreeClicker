@@ -25,9 +25,9 @@ public class Click_manager : MonoBehaviour
     [HideInInspector] public int rht2;
 
     [Header("Шансы")]
-    public int[] scanseDrop = { 0, 3 };    //Шанс выпадение бревен
-    public int[] Number = { 3, 2 };  //Количество бревен которое может выпасть
-    public int[] enabledWood = { 0, 0 };   //Могут ли выпадать бревна
+    public int[] scanseDrop =  { 0, 3 };    //Шанс выпадение бревен
+    public int[] Number =      { 3, 2 };    //Количество бревен которое может выпасть
+    public int[] enabledWood = { 0, 0 };    //Могут ли выпадать бревна
 
 
     //Каждый кадр обновлять текст на сцене
@@ -43,15 +43,21 @@ public class Click_manager : MonoBehaviour
     //Создание бревен
     public void clickTree()
     {
-        Instantiate(AxeEffect, woodPoint.position + new Vector3(0, 0, -10), Quaternion.Euler(0, 0, 0));
-        for (int i = 0; i < mp.woodIndex.Length; i++)
+        //Спавним частицы в месте удара
+        Instantiate(AxeEffect, woodPoint.position + new Vector3(0, 0, -10), Quaternion.Euler(0, 0, 0)); 
+
+        //Проверяем возможное количество видов бревен у игрока
+        for (int i = 0; i < mp.woodIndex.Length; i++) 
         {
-            int Scance = Random.Range(enabledWood[i], scanseDrop[i]);
-            int woodSum = Random.Range(0, Number[i]);
-            if (Scance == 0)
+            int Scance = Random.Range(enabledWood[i], scanseDrop[i]);  //Если бревно может дробаться - то идет разчет с шансем, выпадет или нет
+            int woodSum = Random.Range(0, Number[i]);                  //Расчет количества выпадаемых бревен 
+            //Если повезло и шанс совпал - спавним бревна
+            if (Scance == 0)                                           
             {
+                //Если количество бревен выпало 0 - то бревна не спавнятся
                 while (woodSum != 0)
                 {
+                    //Цикл спавна бревен в сторону которую повернут игрок
                     Instantiate(wood[i], woodPoint.position, Quaternion.Euler(0, 0, Random.Range(rht1, rht2)));
                     woodSum--;
                 }
