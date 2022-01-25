@@ -72,6 +72,7 @@ public class Move_Camera : MonoBehaviour
                 c = false;
             }
         }
+
     }
 
     public void Left()
